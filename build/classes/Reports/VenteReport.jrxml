@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d79a7c36-9302-432e-b4ae-bc9a03988d7c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="PieChartDataset" uuid="9d171545-e557-4eff-841d-eaf213e64555"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     vente.`idVente` AS vente_idVente,
+     vente.`qte` AS vente_qte,
+     vente.`prixVente` AS vente_prixVente,
+     vente.`remisePrd` AS vente_remisePrd,
+     vente.`idClient` AS vente_idClient,
+     vente.`idProduit` AS vente_idProduit,
+     vente.`designationV` AS vente_designationV,
+     vente.`idFactureClient` AS vente_idFactureClient
+FROM
+     `vente` vente]]>
+	</queryString>
+	<field name="vente_idVente" class="java.lang.Integer"/>
+	<field name="vente_qte" class="java.lang.Integer"/>
+	<field name="vente_prixVente" class="java.lang.Integer"/>
+	<field name="vente_remisePrd" class="java.lang.Integer"/>
+	<field name="vente_idClient" class="java.lang.Integer"/>
+	<field name="vente_designationV" class="java.lang.String"/>
+	<group name="vente_idClient">
+		<groupExpression><![CDATA[$F{vente_idClient}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement mode="Opaque" x="229" y="7" width="573" height="24" forecolor="#B89F7D" backcolor="#70A9C6" uuid="173b00b6-db77-4bca-a105-855fcca3458c"/>
+					<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="1" width="263" height="23" forecolor="#FFFFFF" uuid="e744722e-6227-430e-bce8-18ef062313a5"/>
+						<textElement>
+							<font fontName="Arial" isBold="false" pdfFontName="Helvetica"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{vente_idClient}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="2"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="555" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="65" width="229" height="250" uuid="a839e333-6b76-4f8c-aebd-2377538cb343">
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["flower1.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="-20" y="-20" width="229" height="250" uuid="e083896a-ebac-4238-8a43-8cfecb8f8c44">
+					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} > 1]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA["flower1.png"]]></imageExpression>
+			</image>
+			<barChart>
+				<chart>
+					<reportElement x="4" y="386" width="332" height="155" uuid="53fb91cd-8f17-4183-bbb4-ef4b95b49dac"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vente_idVente}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vente_qte}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<lineChart>
+				<chart>
+					<reportElement x="422" y="386" width="350" height="155" uuid="02c3c445-17f6-4ed9-ace4-85c206cec86c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{vente_idVente}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vente_idClient}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<linePlot>
+					<plot/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</linePlot>
+			</lineChart>
+		</band>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="336" y="65" width="449" height="29" uuid="7f874477-959b-4da0-a783-c9bf0f1e4641"/>
+				<textElement textAlignment="Right">
+					<font size="18" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Office chériffien des phosphates]]></text>
+			</staticText>
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="0" width="822" height="65" forecolor="#006699" backcolor="#006699" uuid="dd5ba118-029c-41d1-8d3c-3a17b0acf698"/>
+				<staticText>
+					<reportElement style="Title" x="231" y="0" width="578" height="65" uuid="881e6982-2635-4e5e-a8ad-07f8f6753431"/>
+					<textElement textAlignment="Right">
+						<font size="54" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Les ventes ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="14" splitType="Stretch">
+			<frame>
+				<reportElement x="227" y="0" width="575" height="14" uuid="b9c2e3b0-4ead-46bb-a96d-d34d27a15bae"/>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="0" y="0" width="115" height="14" forecolor="#000000" uuid="d25e728b-dd4b-4774-b167-465579945077"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[ID vente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="115" y="0" width="115" height="14" forecolor="#000000" uuid="815653b6-2eca-48dd-9416-88e25bdee4e9"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Quantite]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="230" y="0" width="115" height="14" forecolor="#000000" uuid="99857b85-124c-443c-a8a2-65791778921f"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Prix de vente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="345" y="0" width="115" height="14" forecolor="#000000" uuid="bd5c0bfe-d945-4beb-8391-9a6261bda510"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Remise]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" positionType="Float" x="460" y="0" width="115" height="14" forecolor="#000000" uuid="51ad3817-ae06-48ac-b07c-6a4a07f98aea"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfFontName="Helvetica"/>
+					</textElement>
+					<text><![CDATA[Nom produit]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="227" y="14" width="575" height="1" uuid="b426d7e3-f208-41b4-84b7-90eca465eb3f"/>
+			</line>
+			<frame>
+				<reportElement x="227" y="0" width="575" height="14" uuid="e24e4273-92a0-479b-8559-9a1a23ec9c4c"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="115" height="14" uuid="5d43aca0-4cba-4e6f-898c-32540195181a"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_idVente}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="115" y="0" width="115" height="14" uuid="7069e4f0-6548-45df-9347-8b05f4a61e74"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_qte}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="230" y="0" width="115" height="14" uuid="2a2587ef-2374-46b1-92da-af224c38028b"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_prixVente}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="345" y="0" width="115" height="14" uuid="e7abc3b2-babf-4dac-abbb-8705b39c969a"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_remisePrd}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement style="Detail" positionType="Float" x="460" y="0" width="115" height="14" uuid="8286a2eb-2095-459d-9644-95fb96385c3c"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_designationV}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="1f7ea28d-b77b-473c-85fd-5c33921be963"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="16" forecolor="#D0B48E" backcolor="#006699" uuid="e76f5079-74e2-42ef-9f6a-da65480a484d"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="5fd11696-486b-43e0-a312-4b92628b1879"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="2efea626-e6dd-48fc-a0a7-89feaa0c74fa"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="0" width="197" height="16" forecolor="#FFFFFF" uuid="5bc34c28-e988-415e-a5a5-8b9347ae55aa"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

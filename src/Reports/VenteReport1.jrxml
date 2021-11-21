@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac48a2c-90bb-4099-89e2-b89f3b675b5c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<queryString>
+		<![CDATA[SELECT
+     vente.`idVente` AS vente_idVente,
+     vente.`qte` AS vente_qte,
+     vente.`prixVente` AS vente_prixVente,
+     vente.`remisePrd` AS vente_remisePrd,
+     vente.`idClient` AS vente_idClient,
+     vente.`idProduit` AS vente_idProduit,
+     vente.`designationV` AS vente_designationV,
+     vente.`idFactureClient` AS vente_idFactureClient,
+     client.`idClient` AS client_idClient,
+     client.`nomClient` AS client_nomClient,
+     client.`telClient` AS client_telClient,
+     client.`idProduit` AS client_idProduit
+     
+FROM
+     `client` client INNER JOIN `vente` vente ON client.`idClient` = vente.`idClient`]]>
+	</queryString>
+	<field name="vente_idVente" class="java.lang.Integer"/>
+	<field name="vente_qte" class="java.lang.Integer"/>
+	<field name="vente_prixVente" class="java.lang.Integer"/>
+	<field name="vente_remisePrd" class="java.lang.Integer"/>
+	<field name="vente_idClient" class="java.lang.Integer"/>
+	<field name="vente_idProduit" class="java.lang.Integer"/>
+	<field name="vente_designationV" class="java.lang.String"/>
+	<field name="vente_idFactureClient" class="java.lang.Integer"/>
+	<field name="client_idClient" class="java.lang.Integer"/>
+	<field name="client_nomClient" class="java.lang.String"/>
+	<field name="client_telClient" class="java.lang.String"/>
+	<field name="client_idProduit" class="java.lang.Integer"/>
+	<group name="client_nomClient">
+		<groupExpression><![CDATA[$F{client_nomClient}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement mode="Opaque" x="0" y="7" width="555" height="24" forecolor="#B89F7D" backcolor="#000000" uuid="92c2cc15-0aaf-464f-aecf-dbbb4c5617f5"/>
+					<textField isStretchWithOverflow="true">
+						<reportElement style="SubTitle" isPrintRepeatedValues="false" x="2" y="0" width="479" height="24" forecolor="#FFFFFF" uuid="40279c00-1e57-4b91-93c3-d4ca41a16c14"/>
+						<textElement>
+							<font isBold="false"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{client_nomClient}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="132" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="553" height="95" backcolor="#000000" uuid="93e13682-d7e3-45d0-a5b8-f76ddff33cb3"/>
+				<staticText>
+					<reportElement style="Title" x="0" y="0" width="481" height="66" uuid="56e82d72-bd74-4fee-a011-b344c1722293"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="High Tower Text" size="48" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Les livraisons par client]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="SubTitle" x="0" y="66" width="375" height="29" uuid="59a8b6cd-241c-418e-bd82-ca4ad390a199"/>
+					<textElement>
+						<font size="22" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Faculté des sciences et techniques Settat]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="0" y="95" width="553" height="32" forecolor="#000000" backcolor="#CC0000" uuid="0028bba4-84b1-4916-9dec-754ff1f67cb8"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement x="395" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="7ca99dfc-c60e-4ad8-9073-ff74a003758e"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="0" y="7" width="111" height="18" forecolor="#000000" uuid="bc1f7617-8035-40eb-8c5f-007f2aa73607"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nom de produit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="7" width="111" height="18" forecolor="#000000" uuid="e6910298-9002-48dd-a10c-8ea98eff2d83"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Quantité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="7" width="111" height="18" forecolor="#000000" uuid="9570f68b-095d-45c1-9504-e6bc1a2d503f"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Prix de vente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="7" width="111" height="18" forecolor="#000000" uuid="b542682f-1fa2-4660-ac05-9f1432043c3d"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Remise]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="7" width="111" height="18" forecolor="#000000" uuid="34c6ee67-144e-42d4-8a44-9bc2579ff7c9"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Num de facture]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18" uuid="cd223480-187c-45a5-b02e-598e3641ca36"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="0" width="111" height="18" uuid="fb4ba059-8bb5-4974-82cb-67fe1afc734f"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_designationV}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="111" y="0" width="111" height="18" uuid="c4e05786-a168-47b8-90c0-8cfc0b249d5c"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_qte}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="222" y="0" width="111" height="18" uuid="fda7327a-1be7-4480-8405-d5c0f052089f"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_prixVente}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="333" y="0" width="111" height="18" uuid="81a9cbb7-26e0-4ada-8471-e0e810a91764"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_remisePrd}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="444" y="0" width="111" height="18" uuid="a52a79e4-5652-405f-b1a7-b24c4f44b784"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{vente_idFactureClient}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="4" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="88d8f82a-3c13-4042-94b3-62595723e9e5"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="243" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="219" width="555" height="24" forecolor="#D0B48E" backcolor="#000000" uuid="e236b35c-e6db-43aa-baa0-cd9431fe170e"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" uuid="2ecd01ac-0e77-4a90-91ae-51e37a542ad4"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" uuid="5eae463b-5f14-4bae-af71-94dae278cb55"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" uuid="1e5f72de-a918-4bce-9611-636c82f8df9f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<barChart>
+				<chart>
+					<reportElement x="80" y="23" width="371" height="179" uuid="cde85fbd-afe7-4351-a296-57df7d018d5f"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["la quantité de vente par client"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{client_nomClient}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{vente_qte}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
